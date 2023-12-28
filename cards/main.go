@@ -1,18 +1,13 @@
 package main
 
-import "fmt"
-
 func main() {
-	cards := []string{newCard()}
-	cards = append(cards, "Ace of Hearts")
+	cards := newDeck()
+	left, right := deal(cards, 10)
 
-	// Looping slices
-	for i, card := range cards {
-		fmt.Println(i, card)
-	}
-}
+	left.saveToFile("left.txt")
+	right.saveToFile("right.txt")
 
-// Add return type of the function otherwise void error will be thrown
-func newCard() string {
-	return "Five of Diamonds"
+	cards = newDeck()
+	cards.shuffle()
+	cards.print()
 }
